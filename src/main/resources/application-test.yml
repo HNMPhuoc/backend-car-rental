@@ -1,0 +1,29 @@
+spring:
+  config:
+    activate:
+      on-profile: test
+  devtools:
+    add-properties: true
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+  hibernate:
+    ddl-auto: update
+  show-sql: false
+  properties:
+    hibernate:
+      format-sql: true
+
+springdoc:
+  api-docs:
+    enabled: true
+  swagger-ui:
+    enabled: true
+openapi:
+  service:
+    api-docs: car-rental
+    server: ${CAR_RENTAL:http://localhost:${server.port}}
+    title: carRental
+    version: 1.0.1
+
+jwt:
+  secretKey: xyz@123
