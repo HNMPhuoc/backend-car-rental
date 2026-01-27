@@ -2,9 +2,12 @@ package com.phuoc.carRental.model;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
 
 import java.time.LocalDate;
 import java.util.Set;
+import java.util.UUID;
 
 @Getter
 @Setter
@@ -15,8 +18,9 @@ import java.util.Set;
 @Entity
 public class Car {
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    String id;
+    @GeneratedValue
+    @JdbcTypeCode(SqlTypes.UUID)
+    UUID id;
 
     @Column(unique = true, nullable = false)
     String licensePlate;

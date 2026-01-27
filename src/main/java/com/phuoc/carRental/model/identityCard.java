@@ -3,8 +3,11 @@ package com.phuoc.carRental.model;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
 
 import java.time.LocalDate;
+import java.util.UUID;
 
 @Getter
 @Setter
@@ -15,9 +18,11 @@ import java.time.LocalDate;
 @Entity
 public class identityCard {
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    String id;
+    @GeneratedValue
+    @JdbcTypeCode(SqlTypes.UUID)
+    UUID id;
 
+    @Column(nullable = false, unique = true)
     String cccd;
     String fullName;
     String gender;
