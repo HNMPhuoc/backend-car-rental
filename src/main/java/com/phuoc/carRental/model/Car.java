@@ -52,4 +52,8 @@ public class Car {
     @ManyToOne
     @JoinColumn(name = "typeId")
     carType type;
+
+    @ManyToOne
+    @JoinColumn(name = "userId")
+    User user;
 }
