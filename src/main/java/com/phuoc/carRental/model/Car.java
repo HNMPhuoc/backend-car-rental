@@ -3,6 +3,7 @@ import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
+import java.time.LocalDate;
 import java.util.Set;
 
 @Getter
@@ -20,16 +21,20 @@ public class Car {
     @Column(unique = true, nullable = false)
     String licensePlate;
 
-    double price;
-    double insuranceCost;
     int manuYear;
     int numSeat;
     String thumbnail;
     boolean maintStatus;
     String fuelType;
     double fuelCons;
-    String extraClause;
+    double price;
+
+    LocalDate insuranceDate;
     boolean insuranceExpired;
+    double insuranceCost;
+
+    String extraClause;
+
     boolean browseStatus;
     boolean hide;
 
