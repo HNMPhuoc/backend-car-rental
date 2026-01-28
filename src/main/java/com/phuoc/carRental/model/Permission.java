@@ -23,6 +23,7 @@ public class Permission {
     @JdbcTypeCode(SqlTypes.UUID)
     UUID id;
 
+    String name;
     String description;
 
     @ManyToMany(mappedBy = "permissions")
