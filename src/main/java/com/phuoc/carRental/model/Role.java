@@ -23,13 +23,14 @@ public class Role {
     @JdbcTypeCode(SqlTypes.UUID)
     UUID id;
 
+    String name;
     String description;
 
     @ManyToMany(mappedBy = "roles")
     Set<User> users;
 
     @ManyToMany
-            @JoinTable(name = "rolePermission",
+    @JoinTable(name = "rolePermission",
             joinColumns = @JoinColumn(name = "roleId"),
             inverseJoinColumns = @JoinColumn(name = "permissionId"))
     Set<Permission> permissions;

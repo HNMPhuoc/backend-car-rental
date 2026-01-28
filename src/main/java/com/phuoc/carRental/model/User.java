@@ -52,4 +52,8 @@ public class User {
 
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
     driverLicense driLicense;
+
+    @OneToMany(mappedBy = "user")
+    Set<Car> cars;
+
 }
