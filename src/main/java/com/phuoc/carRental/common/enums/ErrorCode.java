@@ -30,7 +30,17 @@ public enum ErrorCode {
     PHONE_REQUIRED(4008, "Phone number is required", HttpStatus.BAD_REQUEST),
     INVALID_PHONE_NUMBER(4009, "Phone number must contain only digits", HttpStatus.BAD_REQUEST),
     INVALID_PHONE_LENGTH(4010, "Phone number must be at least {min} digits", HttpStatus.BAD_REQUEST),
-    PHONE_EXISTED(4011, "Phone number existed", HttpStatus.BAD_REQUEST);
+    PHONE_EXISTED(4011, "Phone number existed", HttpStatus.BAD_REQUEST),
+
+    //Validation cho permission, role
+    PERMISSION_NAME_REQUIRED(4012, "The permission name must not be left blank.", HttpStatus.BAD_REQUEST),
+    ROLE_NAME_REQUIRED(4013, "The role name must not be left blank.", HttpStatus.BAD_REQUEST),
+    DESCRIPTION_TOO_LONG(4014, "The description exceeds the allowed length.", HttpStatus.BAD_REQUEST),
+    PERMISSION_NOT_EXISTED(4015, "Permission not existed", HttpStatus.NOT_FOUND),
+    INVALID_ROLE_NAME(4016, "The role name is invalid", HttpStatus.BAD_REQUEST),
+    ROLE_NOT_EXISTED(4017, "Role not existed", HttpStatus.NOT_FOUND),
+    ROLE_EXISTED(4018, "Role existed", HttpStatus.CONFLICT),
+    ;
 
     private final int code;
     private final String message;

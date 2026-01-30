@@ -6,6 +6,9 @@ import jakarta.validation.constraints.Size;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
+import java.util.Set;
+import java.util.UUID;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -33,4 +36,6 @@ public class UserEditRequest {
             message = "INVALID_PHONE_NUMBER"
     )
     String phoneNum;
+
+    Set<UUID> roleId;
 }

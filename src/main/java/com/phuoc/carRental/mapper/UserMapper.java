@@ -3,6 +3,7 @@ package com.phuoc.carRental.mapper;
 import com.phuoc.carRental.common.enums.DefaultValue;
 import com.phuoc.carRental.dto.requests.UserAddRequest;
 import com.phuoc.carRental.dto.requests.UserEditRequest;
+import com.phuoc.carRental.dto.responses.UserListResponse;
 import com.phuoc.carRental.model.User;
 import org.mapstruct.*;
 
@@ -22,6 +23,8 @@ public interface UserMapper {
 
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     void toUpdateEntity(@MappingTarget User user, UserEditRequest req);
+
+    UserListResponse toUserListResponse(User user);
 
     default String defaultAvatar() {
         return DefaultValue.Avatar.getUrl();
