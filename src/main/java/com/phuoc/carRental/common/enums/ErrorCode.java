@@ -40,6 +40,9 @@ public enum ErrorCode {
     INVALID_ROLE_NAME(4016, "The role name is invalid", HttpStatus.BAD_REQUEST),
     ROLE_NOT_EXISTED(4017, "Role not existed", HttpStatus.NOT_FOUND),
     ROLE_EXISTED(4018, "Role existed", HttpStatus.CONFLICT),
+
+    //Validation cho area
+    AREA_NAME_REQUIRED(4019, "The area name must not be left blank.", HttpStatus.BAD_REQUEST),
     ;
 
     private final int code;

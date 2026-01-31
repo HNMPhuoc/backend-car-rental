@@ -1,6 +1,7 @@
 package com.phuoc.carRental.service;
 
 import com.phuoc.carRental.common.enums.ErrorCode;
+import com.phuoc.carRental.common.helpers.RoleHelper;
 import com.phuoc.carRental.dto.requests.UserAddRequest;
 import com.phuoc.carRental.dto.requests.UserEditRequest;
 import com.phuoc.carRental.dto.responses.UserListResponse;
@@ -16,6 +17,7 @@ import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -32,6 +34,8 @@ public class UserService {
     UserRepository userRepository;
     RoleRepository roleRepository;
     UserMapper userMapper;
+    PasswordEncoder passwordEncoder;
+    RoleHelper roleHelper;
 
     public void createUser(UserAddRequest req) {
         if (userRepository.existsByEmailOrUsernameOrPhoneNum(
@@ -42,6 +46,7 @@ public class UserService {
             throw new AppException(ErrorCode.USER_EXISTED);
         }
         User user = userMapper.toCreateEntity(req);
+        user.setPassword(passwordEncoder.encode(req.getPassword()));
         Set<Role> roles = Optional.ofNullable(req.getRoleId())
                 .filter(ids -> !ids.isEmpty())
                 .map(ids -> new HashSet<>(roleRepository.findAllById(ids)))
@@ -81,16 +86,16 @@ public class UserService {
     @Transactional(readOnly = true)
     public Page<UserListResponse> getUsers(
             Pageable pageable,
+            String roleName,
             Boolean online,
             Boolean lock
     ) {
         // default role = USER
-        Role userRole = roleRepository.findByName("USER")
-                .orElseThrow(() -> new AppException(ErrorCode.ROLE_NOT_EXISTED));
+        Role role = roleHelper.resolveRole(roleName);
 
         return userRepository
                 .findByRoleAndOnlineAndLockOptional(
-                        userRole,
+                        role,
                         online,
                         lock,
                         pageable
