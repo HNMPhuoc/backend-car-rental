@@ -43,6 +43,7 @@ public enum ErrorCode {
 
     //Validation cho area
     AREA_NAME_REQUIRED(4019, "The area name must not be left blank.", HttpStatus.BAD_REQUEST),
+    AREA_NOT_EXISTED(4020, "Area not existed", HttpStatus.NOT_FOUND),
     ;
 
     private final int code;

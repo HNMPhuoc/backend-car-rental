@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Repository
@@ -16,4 +17,11 @@ public interface AreaRepository extends JpaRepository<Area, UUID> {
                 from Area a
             """)
     List<AreaResponse> findAllArea();
+
+    @Query("""
+                select new com.phuoc.carRental.dto.responses.AreaResponse(a.id, a.name)
+                from Area a
+                where a.id = :areaId
+            """)
+    Optional<AreaResponse> findAreaById(UUID areaId);
 }
