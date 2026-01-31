@@ -35,21 +35,20 @@ public class AreaService {
 
     @Transactional(readOnly = true)
     public AreaResponse getById(UUID areaId) {
-        Area area = areaRepository.findById(areaId)
-                .orElseThrow(() -> new AppException(ErrorCode.PERMISSION_NOT_EXISTED));
-        return areaMapper.toAreaResponse(area);
+        return areaRepository.findAreaById(areaId)
+                .orElseThrow(() -> new AppException(ErrorCode.AREA_NOT_EXISTED));
     }
 
     @Transactional
     public void update(UUID areaId, AreaRequest request) {
         Area area = areaRepository.findById(areaId)
-                .orElseThrow(() -> new AppException(ErrorCode.PERMISSION_NOT_EXISTED));
+                .orElseThrow(() -> new AppException(ErrorCode.AREA_NOT_EXISTED));
         areaMapper.updateArea(area, request);
     }
 
     public void delete(UUID areaId) {
         if (!areaRepository.existsById(areaId)) {
-            throw new AppException(ErrorCode.PERMISSION_NOT_EXISTED);
+            throw new AppException(ErrorCode.AREA_NOT_EXISTED);
         }
         areaRepository.deleteById(areaId);
     }
