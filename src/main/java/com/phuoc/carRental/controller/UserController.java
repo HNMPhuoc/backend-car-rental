@@ -91,13 +91,14 @@ public class UserController {
     public ApiCustomResponse<Page<UserListResponse>> getUsers(
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size,
+            @RequestParam(required = false) String roleName,
             @RequestParam(required = false) Boolean online,
             @RequestParam(required = false) Boolean lock
     ) {
         Pageable pageable = PageRequest.of(page, size);
         return ApiCustomResponse.<Page<UserListResponse>>builder()
                 .code(2000)
-                .data(userService.getUsers(pageable, online, lock))
+                .data(userService.getUsers(pageable, roleName, online, lock))
                 .build();
     }
 
