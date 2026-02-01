@@ -6,7 +6,6 @@ import lombok.experimental.FieldDefaults;
 import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.type.SqlTypes;
 
-import java.util.Set;
 import java.util.UUID;
 
 @Getter
@@ -16,7 +15,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity
-public class carType {
+public class PaymentMethod {
     @Id
     @GeneratedValue
     @JdbcTypeCode(SqlTypes.UUID)
@@ -24,10 +23,7 @@ public class carType {
 
     String name;
 
-    @ManyToOne
-    @JoinColumn(name = "modelId")
-    carModel models;
+    @OneToOne(mappedBy = "payMethod", cascade = CascadeType.ALL)
+    rentalRequest rentalReq;
 
-    @OneToMany(mappedBy = "type")
-    Set<Car> cars;
 }

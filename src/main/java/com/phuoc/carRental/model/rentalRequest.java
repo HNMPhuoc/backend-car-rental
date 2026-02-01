@@ -1,4 +1,5 @@
 package com.phuoc.carRental.model;
+
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -35,7 +36,7 @@ public class rentalRequest {
 
     @OneToOne
     @JoinColumn(name = "payMethodId", nullable = false, unique = true)
-    paymentMethod payMethod;
+    PaymentMethod payMethod;
 
     @OneToOne(mappedBy = "rentRequest", cascade = CascadeType.ALL)
     rentalInvoice rentInvoice;

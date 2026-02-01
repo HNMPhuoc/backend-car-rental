@@ -16,7 +16,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity
-public class carModel {
+public class CarType {
     @Id
     @GeneratedValue
     @JdbcTypeCode(SqlTypes.UUID)
@@ -25,9 +25,9 @@ public class carModel {
     String name;
 
     @ManyToOne
-    @JoinColumn(name = "brandId")
-    CarBrand brands;
+    @JoinColumn(name = "modelId")
+    CarModel models;
 
-    @OneToMany(mappedBy = "models")
-    Set<carType> types;
+    @OneToMany(mappedBy = "type")
+    Set<Car> cars;
 }
