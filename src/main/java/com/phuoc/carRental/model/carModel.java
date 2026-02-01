@@ -26,7 +26,7 @@ public class carModel {
 
     @ManyToOne
     @JoinColumn(name = "brandId")
-    carBrand brands;
+    CarBrand brands;
 
     @OneToMany(mappedBy = "models")
     Set<carType> types;

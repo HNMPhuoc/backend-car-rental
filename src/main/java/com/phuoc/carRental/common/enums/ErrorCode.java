@@ -43,7 +43,13 @@ public enum ErrorCode {
 
     //Validation cho area
     AREA_NAME_REQUIRED(4019, "The area name must not be left blank.", HttpStatus.BAD_REQUEST),
-    AREA_NOT_EXISTED(4020, "Area not existed", HttpStatus.NOT_FOUND),
+    AREA_NOT_EXISTED(4020, "The rea not existed", HttpStatus.NOT_FOUND),
+
+    //Validation cho car brand
+    CAR_BRAND_NAME_REQUIRED(4021, "The brand name must not be left blank.", HttpStatus.BAD_REQUEST),
+    CAR_BRAND_NOT_EXISTED(4022, "The brand not existed", HttpStatus.BAD_REQUEST),
+    CAR_BRAND_EXISTED(4023, "The brand existed", HttpStatus.BAD_REQUEST),
+
     ;
 
     private final int code;
