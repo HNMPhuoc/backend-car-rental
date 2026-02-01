@@ -1,6 +1,9 @@
 package com.phuoc.carRental.model;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 import org.hibernate.annotations.JdbcTypeCode;
@@ -16,7 +19,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity
-public class carBrand {
+public class CarBrand {
     @Id
     @GeneratedValue
     @JdbcTypeCode(SqlTypes.UUID)
