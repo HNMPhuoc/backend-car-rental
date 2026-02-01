@@ -8,6 +8,10 @@ import org.springframework.http.HttpStatusCode;
 public enum ErrorCode {
     UNCATEGORIZED_EXCEPTION(9999, "Uncategorized error", HttpStatus.INTERNAL_SERVER_ERROR),
     INVALID_KEY(9998, "Invalid message key", HttpStatus.BAD_REQUEST),
+    HANDLE_TOO_LONG(9997, "Request processing timeout", HttpStatus.REQUEST_TIMEOUT),
+    BAD_GATEWAY(9996, "Bad gateway", HttpStatus.BAD_GATEWAY),
+    SERVICE_UNAVAILABLE(9995, "Service unavailable", HttpStatus.SERVICE_UNAVAILABLE),
+
 
     //Validation kiểm tra user tồn tại
     USER_EXISTED(4000, "User existed", HttpStatus.BAD_REQUEST),
@@ -49,6 +53,13 @@ public enum ErrorCode {
     CAR_BRAND_NAME_REQUIRED(4021, "The brand name must not be left blank.", HttpStatus.BAD_REQUEST),
     CAR_BRAND_NOT_EXISTED(4022, "The brand not existed", HttpStatus.BAD_REQUEST),
     CAR_BRAND_EXISTED(4023, "The brand existed", HttpStatus.BAD_REQUEST),
+
+    //Validation cho car model
+    CAR_MODEL_NAME_REQUIRED(4024, "The brand existed", HttpStatus.BAD_REQUEST),
+    BRAND_ID_REQUIRED(4025, "The brand existed", HttpStatus.BAD_REQUEST),
+    CAR_MODEL_NOT_EXISTED(4025, "The Model Car not existed", HttpStatus.BAD_REQUEST),
+    CAR_MODEL_EXISTED(4025, "The Model Car existed", HttpStatus.BAD_REQUEST),
+
 
     ;
 

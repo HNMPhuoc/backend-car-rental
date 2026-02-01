@@ -1,4 +1,5 @@
 package com.phuoc.carRental.model;
+
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -51,7 +52,7 @@ public class Car {
 
     @ManyToOne
     @JoinColumn(name = "typeId")
-    carType type;
+    CarType type;
 
     @ManyToOne
     @JoinColumn(name = "userId")

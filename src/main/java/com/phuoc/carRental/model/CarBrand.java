@@ -28,5 +28,5 @@ public class CarBrand {
     String name;
 
     @OneToMany(mappedBy = "brands")
-    Set<carModel> carModels;
+    Set<CarModel> carModels;
 }

@@ -7,6 +7,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.client.HttpStatusCodeException;
+import org.springframework.web.client.ResourceAccessException;
+import org.springframework.web.context.request.async.AsyncRequestTimeoutException;
 
 import java.util.Map;
 import java.util.Objects;
@@ -15,9 +18,42 @@ import java.util.Objects;
 public class GlobalExceptionHandler {
     private static final String MIN_ATTRIBUTE = "min";
 
-    @ExceptionHandler(value = RuntimeException.class)
-    public ResponseEntity<ApiCustomResponse> handlingRuntimeException(RuntimeException exception) {
-        ErrorCode errorCode = ErrorCode.UNCATEGORIZED_EXCEPTION;
+    @ExceptionHandler(ResourceAccessException.class)
+    public ResponseEntity<ApiCustomResponse> handleResourceAccess(ResourceAccessException ex) {
+
+        ErrorCode errorCode = ErrorCode.HANDLE_TOO_LONG;
+
+        return ResponseEntity.status(errorCode.getStatusCode())
+                .body(ApiCustomResponse.builder()
+                        .code(errorCode.getCode())
+                        .message(errorCode.getMessage())
+                        .build());
+    }
+
+    @ExceptionHandler(HttpStatusCodeException.class)
+    public ResponseEntity<ApiCustomResponse> handleDownstream(HttpStatusCodeException ex) {
+
+        ErrorCode errorCode;
+
+        if (ex.getStatusCode().is5xxServerError()) {
+            errorCode = ErrorCode.BAD_GATEWAY;
+        } else {
+            errorCode = ErrorCode.UNCATEGORIZED_EXCEPTION;
+        }
+
+        return ResponseEntity.status(errorCode.getStatusCode())
+                .body(ApiCustomResponse.builder()
+                        .code(errorCode.getCode())
+                        .message(errorCode.getMessage())
+                        .build());
+    }
+
+
+    @ExceptionHandler(AsyncRequestTimeoutException.class)
+    public ResponseEntity<ApiCustomResponse> handleAsyncTimeout() {
+
+        ErrorCode errorCode = ErrorCode.HANDLE_TOO_LONG;
+
         return ResponseEntity.status(errorCode.getStatusCode())
                 .body(ApiCustomResponse.builder()
                         .code(errorCode.getCode())
@@ -28,6 +64,16 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(value = AppException.class)
     ResponseEntity<ApiCustomResponse> handlingAppException(AppException exception) {
         ErrorCode errorCode = exception.getErrorCode();
+        return ResponseEntity.status(errorCode.getStatusCode())
+                .body(ApiCustomResponse.builder()
+                        .code(errorCode.getCode())
+                        .message(errorCode.getMessage())
+                        .build());
+    }
+
+    @ExceptionHandler(value = RuntimeException.class)
+    public ResponseEntity<ApiCustomResponse> handlingRuntimeException(RuntimeException exception) {
+        ErrorCode errorCode = ErrorCode.UNCATEGORIZED_EXCEPTION;
         return ResponseEntity.status(errorCode.getStatusCode())
                 .body(ApiCustomResponse.builder()
                         .code(errorCode.getCode())
