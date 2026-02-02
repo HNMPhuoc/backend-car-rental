@@ -1,11 +1,11 @@
 package com.phuoc.carRental.model;
+
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.type.SqlTypes;
 
-import java.time.LocalDate;
 import java.util.UUID;
 
 @Getter
@@ -15,19 +15,19 @@ import java.util.UUID;
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity
-public class rentalReceipt {
+public class DriverLicense {
     @Id
     @GeneratedValue
     @JdbcTypeCode(SqlTypes.UUID)
     UUID id;
 
-    String renter;
-    LocalDate invoiceDate;
-    double deposit;
-    double totalRental;
-    double balanceDue;
+    @Column(unique = true, nullable = false)
+    String dlNumber;
+
+    String rank;
+    String urlImage;
 
     @OneToOne
-    @JoinColumn(name = "reqId", nullable = false, unique = true)
-    rentalRequest rentRequest;
+    @JoinColumn(name = "userId", nullable = false, unique = true)
+    User user;
 }

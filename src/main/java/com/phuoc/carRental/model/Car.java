@@ -44,7 +44,7 @@ public class Car {
     boolean hide;
 
     @OneToMany(mappedBy = "car")
-    Set<carImage> images;
+    Set<CarImage> images;
 
     @ManyToOne
     @JoinColumn(name = "areaId")

@@ -48,10 +48,10 @@ public class User {
     Set<Role> roles;
 
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
-    identityCard card;
+    IdentityCard card;
 
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
-    driverLicense driLicense;
+    DriverLicense driLicense;
 
     @OneToMany(mappedBy = "user")
     Set<Car> cars;

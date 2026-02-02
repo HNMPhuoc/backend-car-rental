@@ -39,8 +39,8 @@ public class rentalRequest {
     PaymentMethod payMethod;
 
     @OneToOne(mappedBy = "rentRequest", cascade = CascadeType.ALL)
-    rentalInvoice rentInvoice;
+    RentalInvoice rentInvoice;
 
     @OneToOne(mappedBy = "rentRequest", cascade = CascadeType.ALL)
-    rentalReceipt rentReceipt;
+    RentalReceipt rentReceipt;
 }
