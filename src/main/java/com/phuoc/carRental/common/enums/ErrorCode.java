@@ -37,9 +37,9 @@ public enum ErrorCode {
     PHONE_EXISTED(4011, "Phone number existed", HttpStatus.BAD_REQUEST),
 
     //Validation cho permission, role
-    PERMISSION_NAME_REQUIRED(4012, "The permission name must not be left blank.", HttpStatus.BAD_REQUEST),
+    PERMISSION_NAME_REQUIRED(4012, "The permission name must not be left blank", HttpStatus.BAD_REQUEST),
     ROLE_NAME_REQUIRED(4013, "The role name must not be left blank.", HttpStatus.BAD_REQUEST),
-    DESCRIPTION_TOO_LONG(4014, "The description exceeds the allowed length.", HttpStatus.BAD_REQUEST),
+    DESCRIPTION_TOO_LONG(4014, "The description exceeds the allowed length", HttpStatus.BAD_REQUEST),
     PERMISSION_NOT_EXISTED(4015, "Permission not existed", HttpStatus.NOT_FOUND),
     INVALID_ROLE_NAME(4016, "The role name is invalid", HttpStatus.BAD_REQUEST),
     ROLE_NOT_EXISTED(4017, "Role not existed", HttpStatus.NOT_FOUND),
@@ -50,16 +50,21 @@ public enum ErrorCode {
     AREA_NOT_EXISTED(4020, "The rea not existed", HttpStatus.NOT_FOUND),
 
     //Validation cho car brand
-    CAR_BRAND_NAME_REQUIRED(4021, "The brand name must not be left blank.", HttpStatus.BAD_REQUEST),
+    CAR_BRAND_NAME_REQUIRED(4021, "The brand name must not be left blank", HttpStatus.BAD_REQUEST),
     CAR_BRAND_NOT_EXISTED(4022, "The brand not existed", HttpStatus.BAD_REQUEST),
     CAR_BRAND_EXISTED(4023, "The brand existed", HttpStatus.BAD_REQUEST),
 
     //Validation cho car model
-    CAR_MODEL_NAME_REQUIRED(4024, "The brand existed", HttpStatus.BAD_REQUEST),
-    BRAND_ID_REQUIRED(4025, "The brand existed", HttpStatus.BAD_REQUEST),
-    CAR_MODEL_NOT_EXISTED(4025, "The Model Car not existed", HttpStatus.BAD_REQUEST),
-    CAR_MODEL_EXISTED(4025, "The Model Car existed", HttpStatus.BAD_REQUEST),
+    CAR_MODEL_NAME_REQUIRED(4024, "The model name must not be left blank", HttpStatus.BAD_REQUEST),
+    BRAND_ID_REQUIRED(4025, "The brand id must not be left blank", HttpStatus.BAD_REQUEST),
+    CAR_MODEL_NOT_EXISTED(4025, "The model car not existed", HttpStatus.BAD_REQUEST),
+    CAR_MODEL_EXISTED(4025, "The model car existed", HttpStatus.BAD_REQUEST),
 
+    //Validation cho car type
+    CAR_TYPE_NAME_REQUIRED(4026, "The type name must not be left blank", HttpStatus.BAD_REQUEST),
+    MODEL_ID_REQUIRED(4027, "The model id must not be left blank", HttpStatus.BAD_REQUEST),
+    CAR_TYPE_EXISTED(4027, "The car type existed", HttpStatus.BAD_REQUEST),
+    CAR_TYPE_NOT_EXISTED(4027, "The car type not existed", HttpStatus.BAD_REQUEST),
 
     ;
 

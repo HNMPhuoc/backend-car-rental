@@ -16,23 +16,19 @@ import java.util.UUID;
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity
-public class identityCard {
+public class RentalInvoice {
     @Id
     @GeneratedValue
     @JdbcTypeCode(SqlTypes.UUID)
     UUID id;
 
-    @Column(nullable = false, unique = true)
-    String cccd;
-    String fullName;
-    String gender;
-    LocalDate dob;
-    String birthPlace;
-    String resAddr;
-    String nationally;
-    String urlImage;
+    String carOwner;
+    String licensePlate;
+    String phoneNum;
+    LocalDate invoiceDate;
+    double totalReceive;
 
     @OneToOne
-    @JoinColumn(name = "userId", nullable = false, unique = true)
-    User user;
+    @JoinColumn(name = "reqId", nullable = false, unique = true)
+    rentalRequest rentRequest;
 }

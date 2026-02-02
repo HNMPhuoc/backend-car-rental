@@ -15,19 +15,15 @@ import java.util.UUID;
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity
-public class driverLicense {
+public class CarImage {
     @Id
     @GeneratedValue
     @JdbcTypeCode(SqlTypes.UUID)
     UUID id;
 
-    @Column(unique = true,nullable = false)
-    String dlNumber;
-
-    String rank;
     String urlImage;
 
-    @OneToOne
-    @JoinColumn(name = "userId", nullable = false, unique = true)
-    User user;
+    @ManyToOne
+    @JoinColumn(name = "carId")
+    Car car;
 }

@@ -1,4 +1,5 @@
 package com.phuoc.carRental.model;
+
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -15,19 +16,23 @@ import java.util.UUID;
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity
-public class rentalInvoice {
+public class IdentityCard {
     @Id
     @GeneratedValue
     @JdbcTypeCode(SqlTypes.UUID)
     UUID id;
 
-    String carOwner;
-    String licensePlate;
-    String phoneNum;
-    LocalDate invoiceDate;
-    double totalReceive;
+    @Column(nullable = false, unique = true)
+    String cccd;
+    String fullName;
+    String gender;
+    LocalDate dob;
+    String birthPlace;
+    String resAddr;
+    String nationally;
+    String urlImage;
 
     @OneToOne
-    @JoinColumn(name = "reqId", nullable = false, unique = true)
-    rentalRequest rentRequest;
+    @JoinColumn(name = "userId", nullable = false, unique = true)
+    User user;
 }
