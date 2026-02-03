@@ -183,13 +183,12 @@ public class IdentityCardService {
             throw new AppException(ErrorCode.OCR_EMPTY_RESULT);
         }
 
-        // 3. Sửa lỗi validation: Trim khoảng trắng trước khi check regex
         if (ocr.getCccd() != null) {
             ocr.setCccd(ocr.getCccd().trim());
         }
 
         if (ocr.getCccd() == null || !ocr.getCccd().matches("\\d{12}")) {
-            log.error("Invalid CCCD format: '{}'", ocr.getCccd()); // Log để biết sai cái gì
+//            log.error("Invalid CCCD format: '{}'", ocr.getCccd());
             throw new AppException(ErrorCode.INVALID_CCCD_FORMAT);
         }
 
@@ -239,7 +238,7 @@ public class IdentityCardService {
 
             HttpEntity<MultiValueMap<String, Object>> requestEntity = new HttpEntity<>(body, headers);
 
-            log.info("Calling Python OCR Service: {}", pythonOcrUrl);
+//            log.info("Calling Python OCR Service: {}", pythonOcrUrl);
 
             ResponseEntity<String> response = restTemplate.exchange(
                     pythonOcrUrl,
@@ -261,7 +260,7 @@ public class IdentityCardService {
         } catch (AppException ae) {
             throw ae;
         } catch (Exception ex) {
-            log.error("Error calling/parsing Python OCR", ex); // Log full stacktrace
+//            log.error("Error calling/parsing Python OCR", ex);
             throw new AppException(ErrorCode.UNCATEGORIZED_EXCEPTION);
         }
     }
