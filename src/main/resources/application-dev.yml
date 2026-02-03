@@ -39,3 +39,10 @@ openapi:
 
 jwt:
   secretKey: abc@123
+
+app:
+  upload:
+    dir: ./uploads
+  python:
+    ocr:
+      url: http://localhost:8081/ocr/service

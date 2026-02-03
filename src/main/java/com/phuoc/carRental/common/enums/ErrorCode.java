@@ -66,6 +66,23 @@ public enum ErrorCode {
     CAR_TYPE_EXISTED(4027, "The car type existed", HttpStatus.BAD_REQUEST),
     CAR_TYPE_NOT_EXISTED(4027, "The car type not existed", HttpStatus.BAD_REQUEST),
 
+    //Validation cho cccd
+    INVALID_DOB(4028, "Your age must be at least {min}", HttpStatus.BAD_REQUEST),
+    CCCD_REQUIRED(4029, "The CCCD must not be left blank", HttpStatus.BAD_REQUEST),
+    FULL_NAME_REQUIRED(4030, "The full name must not be left blank", HttpStatus.BAD_REQUEST),
+    USER_ID_REQUIRED(4031, "The user id must not be left blank", HttpStatus.BAD_REQUEST),
+    IDENTITY_CARD_EXISTED(4032, "The identity card existed", HttpStatus.BAD_REQUEST),
+    IDENTITY_CARD_NOT_EXISTED(4033, "The identity card not existed", HttpStatus.BAD_REQUEST),
+    USER_HAS_IDENTITY(4033, "The user already has identity", HttpStatus.BAD_REQUEST),
+    FILE_UPLOAD_FAILED(4034, "Upload image cccd already has identity", HttpStatus.BAD_REQUEST),
+    OCR_FAILED(4035, "Image cccd scan failed", HttpStatus.BAD_REQUEST),
+    IDENTITY_CARD_IMAGE_NOT_EXISTED(4036, "Image cccd not existed", HttpStatus.BAD_REQUEST),
+    OCR_EMPTY_RESULT(4036, "The ocr result is empty", HttpStatus.BAD_REQUEST),
+    INVALID_CCCD_FORMAT(4036, "No. CCCD is wrong format", HttpStatus.BAD_REQUEST),
+    DOB_REQUIRED(4036, "Date of birth is null", HttpStatus.BAD_REQUEST),
+    INVALID_GENDER(4036, "Gender data is invalid", HttpStatus.BAD_REQUEST),
+    INVALID_NATIONALITY(4036, "Nationality data is invalid", HttpStatus.BAD_REQUEST),
+
     ;
 
     private final int code;
