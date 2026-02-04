@@ -82,7 +82,9 @@ public enum ErrorCode {
     DOB_REQUIRED(4036, "Date of birth is null", HttpStatus.BAD_REQUEST),
     INVALID_GENDER(4036, "Gender data is invalid", HttpStatus.BAD_REQUEST),
     INVALID_NATIONALITY(4036, "Nationality data is invalid", HttpStatus.BAD_REQUEST),
-
+    
+    //Validation cho payment method
+    PAYMENT_METHOD_NOT_EXISTED(4037, "Payment method not existed", HttpStatus.BAD_REQUEST),
     ;
 
     private final int code;

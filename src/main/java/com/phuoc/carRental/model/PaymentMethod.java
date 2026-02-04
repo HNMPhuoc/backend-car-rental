@@ -24,6 +24,6 @@ public class PaymentMethod {
     String name;
 
     @OneToOne(mappedBy = "payMethod", cascade = CascadeType.ALL)
-    rentalRequest rentalReq;
+    RentalRequest rentalReq;
 
 }

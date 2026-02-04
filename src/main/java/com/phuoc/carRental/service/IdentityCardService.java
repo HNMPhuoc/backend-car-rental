@@ -16,6 +16,8 @@ import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ByteArrayResource;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.UrlResource;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -24,6 +26,9 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.net.MalformedURLException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.List;
@@ -141,6 +146,33 @@ public class IdentityCardService {
         }
 
         return card.getUrlImage();
+    }
+
+    @Transactional(readOnly = true)
+    public Resource loadCccdImage(UUID id) {
+        IdentityCard card = identityCardRepository.findById(id)
+                .orElseThrow(() -> new AppException(ErrorCode.IDENTITY_CARD_NOT_EXISTED));
+
+        if (card.getUrlImage() == null) {
+            throw new AppException(ErrorCode.IDENTITY_CARD_IMAGE_NOT_EXISTED);
+        }
+
+        try {
+
+            String fileName = card.getUrlImage().substring(card.getUrlImage().lastIndexOf("/") + 1);
+
+            Path filePath = Paths.get(uploadDir).resolve(fileName).normalize();
+
+            Resource resource = new UrlResource(filePath.toUri());
+
+            if (resource.exists() || resource.isReadable()) {
+                return resource;
+            } else {
+                throw new AppException(ErrorCode.UNCATEGORIZED_EXCEPTION);
+            }
+        } catch (MalformedURLException e) {
+            throw new AppException(ErrorCode.UNCATEGORIZED_EXCEPTION);
+        }
     }
 
     @Transactional
