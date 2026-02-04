@@ -30,5 +30,5 @@ public class RentalReceipt {
 
     @OneToOne
     @JoinColumn(name = "reqId", nullable = false, unique = true)
-    rentalRequest rentRequest;
+    RentalRequest rentRequest;
 }

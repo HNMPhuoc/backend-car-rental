@@ -10,7 +10,9 @@ import jakarta.validation.Valid;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
+import org.springframework.core.io.Resource;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -61,6 +63,20 @@ public class IdentityCardController {
                 .message("Get CCCD image URL successfully")
                 .data(imageUrl)
                 .build();
+    }
+
+    @Operation(
+            summary = "Xem ảnh CCCD",
+            description = "Trả về file ảnh trực tiếp để hiển thị trên trình duyệt (img src)"
+    )
+    @GetMapping("/{id}/image")
+    public ResponseEntity<Resource> viewImage(@PathVariable UUID id) {
+
+        Resource file = identityCardService.loadCccdImage(id);
+
+        return ResponseEntity.ok()
+                .contentType(MediaType.IMAGE_JPEG)
+                .body(file);
     }
 
     @Operation(

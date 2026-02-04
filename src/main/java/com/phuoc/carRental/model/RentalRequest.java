@@ -16,7 +16,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity
-public class rentalRequest {
+public class RentalRequest {
     @Id
     @GeneratedValue
     @JdbcTypeCode(SqlTypes.UUID)
