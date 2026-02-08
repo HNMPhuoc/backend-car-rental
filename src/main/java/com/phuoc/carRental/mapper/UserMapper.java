@@ -20,6 +20,15 @@ public interface UserMapper {
     @Mapping(target = "driLicense", ignore = true)
     User toCreateEntity(UserAddRequest req);
 
+    @Mapping(target = "id", ignore = true)
+    @Mapping(target = "lock", constant = "false")
+    @Mapping(target = "online", constant = "false")
+    @Mapping(target = "avatar", expression = "java(defaultAvatar())")
+    @Mapping(target = "roles", ignore = true)
+    @Mapping(target = "cars", ignore = true)
+    @Mapping(target = "card", ignore = true)
+    @Mapping(target = "driLicense", ignore = true)
+    User toSignUpEntity(com.phuoc.carRental.dto.requests.SignUpRequest req);
 
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     void toUpdateEntity(@MappingTarget User user, UserEditRequest req);

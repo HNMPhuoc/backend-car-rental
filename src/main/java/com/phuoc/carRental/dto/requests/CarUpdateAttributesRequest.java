@@ -1,0 +1,17 @@
+package com.phuoc.carRental.dto.requests;
+
+import lombok.*;
+import lombok.experimental.FieldDefaults;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+@FieldDefaults(level = AccessLevel.PRIVATE)
+public class CarUpdateAttributesRequest {
+    int manuYear;
+    int numSeat;
+    String fuelType;
+    double fuelCons;
+    double price;
+}

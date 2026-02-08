@@ -1,7 +1,11 @@
 package com.phuoc.carRental.exception;
 
 import com.phuoc.carRental.common.enums.ErrorCode;
+import lombok.Getter;
+import lombok.Setter;
 
+@Setter
+@Getter
 public class AppException extends RuntimeException {
 
     private ErrorCode errorCode;
@@ -11,11 +15,4 @@ public class AppException extends RuntimeException {
         this.errorCode = errorCode;
     }
 
-    public ErrorCode getErrorCode() {
-        return errorCode;
-    }
-
-    public void setErrorCode(ErrorCode errorCode) {
-        this.errorCode = errorCode;
-    }
 }

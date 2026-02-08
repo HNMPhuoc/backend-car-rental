@@ -38,7 +38,9 @@ openapi:
     version: 1.0.1
 
 jwt:
-  secretKey: abc@123
+  signerKey: "xqxWgdQaW/sgEfB4CBX3zbEBPJA8+MvWddl73xw8fplDlqkcx/q9Y6dso6PUDwbv"
+  valid-duration: 3600 
+  refreshable-duration: 360000
 
 app:
   upload:

@@ -1,15 +1,15 @@
 package com.phuoc.carRental;
 
-import jakarta.annotation.PostConstruct;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 @SpringBootApplication
+@EnableScheduling
 public class CarRentalApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(CarRentalApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(CarRentalApplication.class, args);
+    }
 
 }

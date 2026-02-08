@@ -11,7 +11,8 @@ public enum ErrorCode {
     HANDLE_TOO_LONG(9997, "Request processing timeout", HttpStatus.REQUEST_TIMEOUT),
     BAD_GATEWAY(9996, "Bad gateway", HttpStatus.BAD_GATEWAY),
     SERVICE_UNAVAILABLE(9995, "Service unavailable", HttpStatus.SERVICE_UNAVAILABLE),
-
+    FORBIDDEN(9994, "You don't have permission to access this resource", HttpStatus.FORBIDDEN),
+    UNAUTHENTICATED(9993, "Unauthenticated request", HttpStatus.UNAUTHORIZED),
 
     //Validation kiểm tra user tồn tại
     USER_EXISTED(4000, "User existed", HttpStatus.BAD_REQUEST),
@@ -82,9 +83,18 @@ public enum ErrorCode {
     DOB_REQUIRED(4036, "Date of birth is null", HttpStatus.BAD_REQUEST),
     INVALID_GENDER(4036, "Gender data is invalid", HttpStatus.BAD_REQUEST),
     INVALID_NATIONALITY(4036, "Nationality data is invalid", HttpStatus.BAD_REQUEST),
-    
+
     //Validation cho payment method
     PAYMENT_METHOD_NOT_EXISTED(4037, "Payment method not existed", HttpStatus.BAD_REQUEST),
+
+    //Validation cho car
+    CAR_NOT_EXISTED(4037, "Car not existed", HttpStatus.BAD_REQUEST),
+
+    //Validation cho authentication
+    INVALID_CREDENTIALS(4038, "Invalid username or password", HttpStatus.UNAUTHORIZED),
+    USER_NOT_FOUND(4039, "User not found", HttpStatus.NOT_FOUND),
+    INVALID_TOKEN(9991, "Token is invalid or expired", HttpStatus.UNAUTHORIZED),
+    
     ;
 
     private final int code;
